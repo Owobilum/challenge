@@ -39,7 +39,8 @@ const Home = ({ snippets }: HomeProps): ReactElement => {
       return;
     }
     let index = Math.floor(Math.random() * snippets.length);
-    setParagraph(snippets[index].body);
+    let parsedText = snippets[index].body.replace(/[\n\r]/g, '');
+    setParagraph(parsedText);
   };
 
   const handleSetDuration = (value: string) => {
@@ -51,8 +52,10 @@ const Home = ({ snippets }: HomeProps): ReactElement => {
   };
 
   useEffect(() => {
-    handleParagraphSelection();
-  }, []);
+    if (stage === 'start') {
+      handleParagraphSelection();
+    }
+  }, [stage]);
 
   return (
     <div style={{ padding: 32 }}>

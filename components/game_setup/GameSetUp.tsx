@@ -42,7 +42,7 @@ function GameSetUp({
 
   return (
     <div style={{ display: 'grid', placeItems: 'center' }}>
-      <h2 style={{ marginBottom: 0 }}>Step 1</h2>
+      <h2 style={{ marginBottom: 0 }}>Step 1 (Required)</h2>
       <p>Select your playing duration</p>
       <div style={{ width: 300, marginBottom: 24 }}>
         <div
