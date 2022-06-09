@@ -1,12 +1,25 @@
-import { ChangeEvent, ReactElement, useState } from 'react';
+import { ChangeEvent, ReactElement } from 'react';
+
 import Button from '../button/Button';
 import Input from '../input/Input';
 import TextArea from '../textarea/TextArea';
+import type { StageType } from '../../pages/index';
 
-function GameSetUp(): ReactElement {
-  const [paragraph, setParagraph] = useState('');
-  const [duration, setDuration] = useState('');
+interface GameSetUpProps {
+  setStage: (stage: StageType) => void;
+  paragraph: string;
+  setParagraph: (text: string) => void;
+  duration: string;
+  setDuration: (value: string) => void;
+}
 
+function GameSetUp({
+  setStage,
+  paragraph,
+  setParagraph,
+  duration,
+  setDuration,
+}: GameSetUpProps): ReactElement {
   const handleParagraphChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     if (value.length - paragraph.length === 1) {
@@ -31,7 +44,6 @@ function GameSetUp(): ReactElement {
     <div style={{ display: 'grid', placeItems: 'center' }}>
       <h2 style={{ marginBottom: 0 }}>Step 1</h2>
       <p>Select your playing duration</p>
-
       <div style={{ width: 300, marginBottom: 24 }}>
         <div
           style={{
@@ -59,7 +71,6 @@ function GameSetUp(): ReactElement {
           />
         </div>
       </div>
-
       <h2 style={{ marginBottom: 0 }}>Step 2 (Optional)</h2>
       <p>Paste in a paragraph you would like to type</p>
       <div style={{ padding: '0 16px' }}>
@@ -73,7 +84,12 @@ function GameSetUp(): ReactElement {
         />
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 32 }}>
-        <Button>Start Game</Button>
+        <Button
+          onClick={() => setStage('play')}
+          disabled={!duration || !paragraph}
+        >
+          Start Game
+        </Button>
       </div>
     </div>
   );

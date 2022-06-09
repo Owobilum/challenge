@@ -16,6 +16,9 @@ const Button = styled.button<ButtonProps>`
     background-color: ${(props) => props.theme.colors.primary};
     color: #ffffff;
   }
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   ${(props) =>
     props.size === 'sm'
