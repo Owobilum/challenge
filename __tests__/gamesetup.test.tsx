@@ -5,8 +5,18 @@ import GameSetUp from '../components/game_setup/GameSetUp';
 
 const user = userEvent.setup();
 
+const paragraph = 'I framer went to stall';
+
 test('renders duration setters', () => {
-  render(<GameSetUp />);
+  render(
+    <GameSetUp
+      setStage={() => {}}
+      setParagraph={() => {}}
+      paragraph={paragraph}
+      duration={''}
+      setDuration={() => {}}
+    />
+  );
   const minBtn1 = screen.getByRole('button', { name: /1 minute/i });
   const minBtn2 = screen.getByRole('button', { name: /2 minutes/i });
   const minBtn5 = screen.getByRole('button', { name: /5 minutes/i });
@@ -20,7 +30,15 @@ test('renders duration setters', () => {
 });
 
 test('custom duration is set properly', async () => {
-  render(<GameSetUp />);
+  render(
+    <GameSetUp
+      setStage={() => {}}
+      setParagraph={() => {}}
+      paragraph={paragraph}
+      duration={''}
+      setDuration={() => {}}
+    />
+  );
   const durationInput = screen.getByRole('spinbutton', {
     name: /enter custom duration/i,
   });
@@ -42,35 +60,81 @@ test('custom duration is set properly', async () => {
 });
 
 test('renders textarea for pasting in text', () => {
-  render(<GameSetUp />);
+  render(
+    <GameSetUp
+      setStage={() => {}}
+      setParagraph={() => {}}
+      paragraph={paragraph}
+      duration={''}
+      setDuration={() => {}}
+    />
+  );
   const input = screen.getByRole('textbox', {
     name: /paste in paragraph/i,
   });
   expect(input).toBeInTheDocument();
 });
 
-test('pasting text updates textarea', async () => {
-  render(<GameSetUp />);
-  const text = 'Hello, world!';
+test('user is presented with paragraph to type', async () => {
+  render(
+    <GameSetUp
+      setStage={() => {}}
+      setParagraph={() => {}}
+      paragraph={paragraph}
+      duration={''}
+      setDuration={() => {}}
+    />
+  );
   const input = screen.getByRole('textbox', {
     name: /paste in paragraph/i,
   });
-  user.clear(input);
-  expect(input).toHaveTextContent('');
-
-  input.focus();
-  await user.paste(text);
-  expect(input).toHaveTextContent(text);
+  expect(input).toHaveTextContent('I framer went to stall');
 });
 
+// test('pasting text updates textarea', async () => {
+//   render(
+//     <GameSetUp
+//       setStage={() => {}}
+//       setParagraph={() => {}}
+//       paragraph={paragraph}
+//     />
+//   );
+//   const text = 'Hello, world!';
+//   const input = screen.getByRole('textbox', {
+//     name: /paste in paragraph/i,
+//   });
+//   await user.clear(input);
+//   expect(input).toBeEmptyDOMElement();
+
+//   input.focus();
+//   await user.paste(text);
+//   expect(input).toHaveTextContent(text);
+// });
+
 test('renders start game button', () => {
-  render(<GameSetUp />);
+  render(
+    <GameSetUp
+      setStage={() => {}}
+      setParagraph={() => {}}
+      paragraph={paragraph}
+      duration={''}
+      setDuration={() => {}}
+    />
+  );
   const btn = screen.getByRole('button', { name: /start game/i });
   expect(btn).toBeInTheDocument();
 });
 
 test('renders the correct headings', () => {
-  render(<GameSetUp />);
+  render(
+    <GameSetUp
+      setStage={() => {}}
+      setParagraph={() => {}}
+      paragraph={paragraph}
+      duration={''}
+      setDuration={() => {}}
+    />
+  );
 
   const heading = screen.getByRole('heading', { name: /step 1/i });
   expect(heading).toBeInTheDocument();
