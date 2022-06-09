@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 
 import GameSetUp from '../components/game_setup/GameSetUp';
 import GamePlay from '../components/game_play/GamePlay';
+import GameResult from '../components/game_result/GameResult';
 
 export type StageType = 'start' | 'play' | 'end';
 
@@ -72,6 +73,9 @@ const Home = ({ snippets }: HomeProps): ReactElement => {
             setStage={handleSetStage}
             setResult={handleResult}
           />
+        )}
+        {stage === 'end' && result && (
+          <GameResult result={result} setStage={handleSetStage} />
         )}
       </div>
     </div>

@@ -39,6 +39,7 @@ function GamePlay({
 
   const handleCheckMatch = () => {
     let score = 0;
+    let typingSpeed = 0;
     let matchPercentage;
     let template = paragraph.split(' ');
     let submitted = typedText.split(' ');
@@ -49,7 +50,9 @@ function GamePlay({
     }
     matchPercentage = Math.floor((score / template.length) * 100);
     let timeTaken = Number(duration) * 60 - count;
-    let typingSpeed = Math.floor((submitted.length * 60) / timeTaken);
+    if (submitted[0] !== '') {
+      typingSpeed = Math.floor((submitted.length * 60) / timeTaken);
+    }
     setResult({ points: score, accuracy: matchPercentage, speed: typingSpeed });
   };
 
