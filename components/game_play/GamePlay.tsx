@@ -76,10 +76,23 @@ function GamePlay({
 
   return (
     <div style={{ display: 'grid', placeItems: 'center' }}>
-      <p style={{ fontSize: '2rem', fontWeight: 700 }}>{formatTime(count)}</p>
-      <div style={{ margin: '2rem 1rem', fontSize: '1.25rem' }}>
+      <h6
+        style={{
+          fontSize: '2rem',
+          fontWeight: 700,
+          margin: '0.25rem 0.5rem',
+        }}
+      >
+        {formatTime(count)}
+      </h6>
+      <h6
+        style={{
+          fontSize: '1.25rem',
+          margin: '0.5rem',
+        }}
+      >
         {paragraph}
-      </div>
+      </h6>
       <div style={{ padding: '0 1rem' }}>
         <TextArea
           ref={fieldRef}
